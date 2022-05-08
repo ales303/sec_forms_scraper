@@ -1,0 +1,5 @@
+/.idea
+SEC_Form_4_records_stock_helper_yfinance.py
+sec_symbols_to_scrape.txt
+/logs
+update_dataframe_to_sql_row_by_row.py

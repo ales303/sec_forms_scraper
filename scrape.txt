@@ -1,0 +1,65 @@
+Script 1: Parses the table and outputs a file which contains the dates and urls.
+
+usage: scrape_table.py [-h] config_file
+
+Scrape Table v1.0
+
+positional arguments:
+config_file configuration file
+
+optional arguments:
+-h, --help show this help message and exit
+
+Script 2: processes each URL base on date specified. parses the web page and extracts all relevant information.
+
+usage: scrape_data.py [-h] [--setProcDate SETPROCDATE] config_file
+
+Scrape Data v1.0
+
+positional arguments:
+config_file configuration file
+
+optional arguments:
+-h, --help show this help message and exit
+--setProcDate SETPROCDATE
+set processing date [yyyy-mm-dd|all]
+
+
+
+Note: bracket commands are optional, so just:
+
+script 1.
+python scrape_table.py scrape_table.cfg
+
+script 2.
+python scrape_data.py scrape_data.cfg
+
+
+How to run script 2 with all dates processed:
+
+python scrape_data.py scrape_data.cfg --setProcDate all
+
+
+you can specify a date too:
+--setProcDate 2020-09-11
+
+
+
+[9/11/2020 11:19:22 AM] Christopher Alesevich: Just one last question so that I confirm I understand this correctly:
+
+1. The first script runs every 20 mins and appends to the output url file each time it runs.
+2. The second script will move the url file to an archive folder after each time it runs.
+
+Does the second script filter for duplicate URLs in the url list when it runs? Also, does the second script filter for URLs with the current date only?
+
+
+[9/11/2020 11:21:57 AM] John Dizon: 1. it runs once, you need to setup the scheduling in crontab to auto run the script every 20 minutes. each run will append to the existing file.
+
+2. yes, after running it will move the file to archive. yes, it will filter for duplicates. and yes, it will only process urls with current date only.
+
+
+Important - the headers are being hard-coded. To use the module fake-user-agent:
+
+[9/12/2020 11:32:55 AM] Christopher Alesevich: So in the future, if I need to try to use the fake-user-agent, I set the config fake-user-agent = NO to 'YES' and then I also comment out line 216 in scrape_table.py
+
+[9/12/2020 11:33:10 AM] John Dizon: correct
